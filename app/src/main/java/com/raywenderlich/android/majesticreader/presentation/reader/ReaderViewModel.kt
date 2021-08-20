@@ -43,6 +43,8 @@ import com.raywenderlich.android.majesticreader.domain.Bookmark
 import com.raywenderlich.android.majesticreader.domain.Document
 import com.raywenderlich.android.majesticreader.framework.Interactors
 import com.raywenderlich.android.majesticreader.framework.MajesticViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.IOException
 
 class ReaderViewModel(application: Application, interactors: Interactors) : MajesticViewModel
@@ -59,7 +61,11 @@ class ReaderViewModel(application: Application, interactors: Interactors) : Maje
   val document = MutableLiveData<Document>()
 
   val bookmarks = MediatorLiveData<List<Bookmark>>().apply {
-    // TODO add sources
+    addSource(document) { document ->
+      GlobalScope.launch {
+        postValue(interactors.getBookmarks(document))
+      }
+    }
   }
 
   val currentPage = MediatorLiveData<PdfRenderer.Page>()
@@ -79,8 +85,9 @@ class ReaderViewModel(application: Application, interactors: Interactors) : Maje
   }
 
   val isInLibrary: MediatorLiveData<Boolean> = MediatorLiveData<Boolean>().apply {
-    addSource(document) { value = isInLibrary(it) }
+    addSource(document) { document -> GlobalScope.launch { postValue(isInLibrary(document)) } }
   }
+
 
   val renderer = MediatorLiveData<PdfRenderer>().apply {
     addSource(document) {
@@ -98,8 +105,9 @@ class ReaderViewModel(application: Application, interactors: Interactors) : Maje
   private fun isCurrentPageBookmarked() =
       bookmarks.value?.any { it.page == currentPage.value?.index } == true
 
-  // TODO check if document is in library
-  private fun isInLibrary(document: Document) = false
+  private suspend fun isInLibrary(document: Document) =
+    interactors.getDocuments().any { it.url == document.url }
+
 
   fun loadArguments(arguments: Bundle?) {
     if (arguments == null) {

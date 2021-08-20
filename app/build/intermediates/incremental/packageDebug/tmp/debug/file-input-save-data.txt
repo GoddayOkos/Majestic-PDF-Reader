@@ -1,11 +1,15 @@
 #Internal package file, do not edit.
-#Thu Aug 19 22:45:59 WAT 2021
-0.base=/Users/mac/Downloads/clean-architecture-android-materials/starter/app/build/intermediates/dex/debug/mergeExtDexDebug/out
+#Fri Aug 20 10:57:52 WAT 2021
+2.base=/Users/mac/Downloads/clean-architecture-android-materials/starter/app/build/intermediates/dex/debug/mergeLibDexDebug/out
 0.path=classes.dex
+count=3
+1.set=DEX
+2.path=classes_0.dex
+2.baseType=DIRECTORY
+0.base=/Users/mac/Downloads/clean-architecture-android-materials/starter/app/build/intermediates/dex/debug/mergeExtDexDebug/out
+2.set=DEX
 1.baseType=DIRECTORY
-count=2
 1.path=classes.dex
 0.baseType=DIRECTORY
-1.set=DEX
 1.base=/Users/mac/Downloads/clean-architecture-android-materials/starter/app/build/intermediates/dex/debug/mergeProjectDexDebug/out
 0.set=DEX
