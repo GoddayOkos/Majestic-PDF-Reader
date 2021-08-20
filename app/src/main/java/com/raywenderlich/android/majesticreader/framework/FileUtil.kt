@@ -47,7 +47,7 @@ object FileUtil {
   private fun getPdfThumbnailUri(context: Context, documentUri: String, documentName: String):
       String {
     val pdfRenderer = PdfRenderer(context.contentResolver.openFileDescriptor(Uri.parse(documentUri),
-        "r"))
+        "r")!!)
 
     val firstPage = pdfRenderer.openPage(0)
 
