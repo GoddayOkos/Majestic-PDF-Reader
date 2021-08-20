@@ -60,7 +60,7 @@ class BookmarksAdapter(
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     holder.titleTextView.text = holder.itemView.resources.getString(
         R.string.page_bookmark_format,
-        bookmarks[position].page
+        bookmarks[position].page + 1
     )
     holder.itemView.setOnClickListener { itemClickListener.invoke(bookmarks[position]) }
   }

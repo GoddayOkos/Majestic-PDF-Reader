@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Fri Aug 20 13:46:45 WAT 2021
+#Fri Aug 20 14:18:34 WAT 2021
 2.base=/Users/mac/Downloads/clean-architecture-android-materials/starter/app/build/intermediates/dex/debug/mergeLibDexDebug/out
 0.path=classes.dex
 count=3
